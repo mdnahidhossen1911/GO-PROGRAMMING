@@ -1114,11 +1114,97 @@ __fmt এর প্রধান ফাংশনগুলো__
   }
   ~~~
 
+## গোল্যাং-এ ফাংশন
+   গোল্যাং-এ ফাংশন হল একটি কোড ব্লক যা নির্দিষ্ট কাজ সম্পাদন করতে ব্যবহৃত হয়। ফাংশন ব্যবহার করে কোড পুনঃব্যবহারযোগ্য, পরিষ্কার এবং সহজবোধ্য করা যায়।
+
+   - প্যারামিটার পাসিং: গোল্যাং-এ প্যারামিটার পাসিং ডিফল্টভাবে পাস বাই ভ্যালু।
+   - পয়েন্টার ব্যবহার: পয়েন্টার দিয়ে পাস করলে পাস বাই রেফারেন্স-এর মতো আচরণ করে।
+   - Variadic Function: যেকোনো সংখ্যক আর্গুমেন্ট পাস করার জন্য ব্যবহার করা যায়।
+   - Defer: ফাংশন শেষে কোনো নির্দিষ্ট কাজ করতে কার্যকর।
+
+  ~~~
+  package main
+
+  import "fmt"
+
+  func greet(name string) {
+      fmt.Println("Hello,", name)
+  }
+
+  func main() {
+      greet("Alice")
+  }
+  ~~~
+
+  ~~~
+  package main
+
+  import "fmt"
+
+  func add(a int, b int) int {
+      return a + b
+  }
+
+  func main() {
+      result := add(5, 3)
+      fmt.Println("Sum:", result)
+  }
+  ~~~
 
 
+  ~~~
+  //একাধিক রিটার্ন ভ্যালু সহ
+  package main
+
+  import "fmt"
+
+  func divide(a int, b int) (int, int) {
+      quotient := a / b
+      remainder := a % b
+      return quotient, remainder
+  }
+
+  func main() {
+      q, r := divide(10, 3)
+      fmt.Println("Quotient:", q)
+      fmt.Println("Remainder:", r)
+  }
+  ~~~
+
+  ~~~
+  //পয়েন্টার প্যারামিটার সহ ফাংশন
+  package main
+
+  import "fmt"
+
+  func increment(num *int) {
+      *num = *num + 1
+  }
+
+  func main() {
+      value := 10
+      increment(&value)
+      fmt.Println("Incremented Value:", value)
+  }
+  ~~~
 
 
-     
+  
+  ~~~
+  //ল্যাম্বডা বা অ্যানোনিমাস ফাংশন
+  package main
+
+  import "fmt"
+
+  func main() {
+      add := func(a, b int) int {
+          return a + b
+      }
+
+      fmt.Println("Sum:", add(3, 7))
+  }
+  ~~~
+   
 
 
 
