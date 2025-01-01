@@ -1027,7 +1027,47 @@ __fmt এর প্রধান ফাংশনগুলো__
    }
    ~~~
 
+## গোল্যাং-এ পয়েন্টার (Pointers)
+   গোল্যাং-এ পয়েন্টার (Pointers) হল একটি ভেরিয়েবলের মেমোরি অ্যাড্রেস। পয়েন্টার ব্যবহার করে আমরা ভেরিয়েবলের মান সরাসরি মেমোরি থেকে পড়তে এবং পরিবর্তন করতে পারি। এটি মেমোরি ম্যানেজমেন্ট এবং ডেটা হ্যান্ডলিং আরও কার্যকর করে তোলে।\
+   
+   __পয়েন্টার ডিক্লারেশন ও ব্যবহারের মূল কাঠামো__
+   - \* : পয়েন্টার ডিক্লারেশন এবং ডেরেফারেন্সিং-এর জন্য ব্যবহৃত হয়।
+   - & : কোনো ভেরিয়েবলের মেমোরি অ্যাড্রেস পাওয়ার জন্য ব্যবহৃত হয়।
+   - Nil Pointer: পয়েন্টার ব্যবহারের আগে এটি nil কিনা তা পরীক্ষা করা উচিত।
+   - Garbage Collection: গোল্যাং স্বয়ংক্রিয়ভাবে মেমোরি পরিচালনা করে, তাই পয়েন্টার ফ্রি করার দরকার হয় না।
+   - Unsafe Operations: পয়েন্টার ব্যবহারে সাবধান থাকতে হবে, কারণ এটি ভুল ব্যবহার করলে প্রোগ্রাম ক্র্যাশ করতে পারে।
 
+  ~~~
+  package main
+
+  /// pointers stors memory address
+
+  import "fmt"
+
+  func main() {
+
+	num := 23
+	var pointers *int = &num
+	fmt.Println(pointers)
+
+	name := "nahid"
+	pit := &name
+	fmt.Println(pit)
+
+	var pnt *int // deafult value of pointers nil
+	fmt.Println(pnt)
+
+	///modifyValueByRefarence
+	value := 10
+	modifyValueByRefarence(&value) //func
+	fmt.Println(value)
+  }
+
+  func modifyValueByRefarence(value *int) {
+	*value = *value + 20
+  }
+  ~~~
+   
 
 
 
