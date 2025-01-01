@@ -1278,5 +1278,107 @@ __fmt এর প্রধান ফাংশনগুলো__
   ~~~
   
 
+## গোল্যাং-এ ফাইল হ্যান্ডলিং
 
+~~~
+package main
+
+import (
+    "fmt"
+    "os"
+    "io/ioutil"
+    "bufio"
+)
+
+func main() {
+    // 1. ফাইল তৈরি করা
+    fileName := "example.txt"
+    file, err := os.Create(fileName)
+    if err != nil {
+        fmt.Println("Error creating file:", err)
+        return
+    }
+    defer file.Close() // ফাইল বন্ধ করা নিশ্চিত করতে defer ব্যবহার করা হয়েছে।
+
+    fmt.Println("File created successfully.")
+
+    // 2. ফাইলে লেখা
+    _, err = file.WriteString("Hello, Golang!\nThis is a sample file.\n")
+    if err != nil {
+        fmt.Println("Error writing to file:", err)
+        return
+    }
+    fmt.Println("Data written to file.")
+
+    // 3. ফাইল পড়া - ioutil ব্যবহার করে
+    data, err := ioutil.ReadFile(fileName)
+    if err != nil {
+        fmt.Println("Error reading file:", err)
+        return
+    }
+    fmt.Println("\nFile content using ioutil.ReadFile:\n", string(data))
+
+    // 4. ফাইল পড়া - bufio এবং os.Open ব্যবহার করে
+    file, err = os.Open(fileName)
+    if err != nil {
+        fmt.Println("Error opening file:", err)
+        return
+    }
+    defer file.Close()
+
+    fmt.Println("\nFile content using bufio.NewScanner:")
+    scanner := bufio.NewScanner(file)
+    for scanner.Scan() {
+        fmt.Println(scanner.Text())
+    }
+    if err := scanner.Err(); err != nil {
+        fmt.Println("Error reading file:", err)
+    }
+
+    // 5. ফাইলে অ্যাপেন্ড করা
+    file, err = os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, 0644)
+    if err != nil {
+        fmt.Println("Error opening file for append:", err)
+        return
+    }
+    defer file.Close()
+
+    _, err = file.WriteString("\nThis is appended text.")
+    if err != nil {
+        fmt.Println("Error appending to file:", err)
+        return
+    }
+    fmt.Println("\nData appended to file.")
+
+    // 6. ফাইলের মেটাডেটা পরীক্ষা করা
+    fileInfo, err := os.Stat(fileName)
+    if err != nil {
+        fmt.Println("Error getting file info:", err)
+        return
+    }
+
+    fmt.Println("\nFile Metadata:")
+    fmt.Println("File Name:", fileInfo.Name())
+    fmt.Println("File Size:", fileInfo.Size(), "bytes")
+    fmt.Println("Permissions:", fileInfo.Mode())
+    fmt.Println("Last Modified:", fileInfo.ModTime())
+    fmt.Println("Is Directory:", fileInfo.IsDir())
+
+    // 7. ফাইল পুনঃনামকরণ করা
+    err = os.Rename(fileName, "renamed_example.txt")
+    if err != nil {
+        fmt.Println("Error renaming file:", err)
+        return
+    }
+    fmt.Println("\nFile renamed to 'renamed_example.txt'.")
+
+    // 8. ফাইল মুছে ফেলা
+    err = os.Remove("renamed_example.txt")
+    if err != nil {
+        fmt.Println("Error deleting file:", err)
+        return
+    }
+    fmt.Println("\nFile deleted successfully.")
+}
+~~~
 
