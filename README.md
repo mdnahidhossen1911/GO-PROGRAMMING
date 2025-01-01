@@ -1205,6 +1205,36 @@ __fmt এর প্রধান ফাংশনগুলো__
   }
   ~~~
    
+## গোল্যাং প্যাকেজ
+   প্যাকেজ হলো সম্পর্কিত কোড ফাইলগুলোর একটি সংগ্রহ যা একসঙ্গে একটি নির্দিষ্ট কার্য সম্পাদন করে। প্রতিটি গোল্যাং প্রোগ্রাম অন্তত একটি প্যাকেজ ধারণ করে, যেমন main।
 
+   - __প্যাকেজ তৈরি__
+      - একটি নতুন ফোল্ডার তৈরি করুন।
+      - ফোল্ডারের প্রতিটি .go ফাইলের শুরুতে package <package_name> ডিক্লারেশন দিন।
+       
+  - __ফাইল: mathutil/mathutil.go__
+  ~~~
+  package mathutil
 
+  func Add(a, b int) int {
+      return a + b
+  }
 
+  func Multiply(a, b int) int {
+      return a * b
+  }
+  ~~~
+  - __ফাইল: main.go__
+  ~~~
+  package main
+
+  import (
+      "fmt"
+      "yourmodule/mathutil" // প্যাকেজ ইমপোর্ট
+  )
+
+  func main() {
+      fmt.Println("Sum:", mathutil.Add(5, 3))
+      fmt.Println("Product:", mathutil.Multiply(4, 2))
+  }
+  ~~~
