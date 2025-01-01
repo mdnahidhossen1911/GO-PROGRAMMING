@@ -963,9 +963,77 @@ __fmt এর প্রধান ফাংশনগুলো__
 
        fmt.Println("Alice's Math score:", nestedMap["Alice"]["Math"])
    }
-   ~~~ 
+   ~~~
+
+## গোল্যাং-এ struct
+   গোল্যাং-এ struct হল একটি ইউজার-ডিফাইন্ড ডেটা টাইপ যা এক বা একাধিক ফিল্ড (প্রপার্টি) ধারণ করে। এটি জটিল ডেটা মডেল তৈরি করতে সহায়ক। struct ব্যবহার করে একটি অবজেক্ট বা রেকর্ড তৈরি করা যায়, যেখানে 
+   বিভিন্ন টাইপের ডেটা রাখা সম্ভব।
+
+   - Struct ডিফল্ট মান: Struct এর প্রতিটি ফিল্ডের ডিফল্ট মান zero value হয়।
+   - মেথড: Struct-এ মেথড যুক্ত করে অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং-এর মতো আচরণ তৈরি করা যায়।
+   - পয়েন্টার: Struct-এর পয়েন্টার ব্যবহার করে ডেটা সরাসরি মডিফাই করা যায়।
+   - Nested Struct: Struct-এর মধ্যে আরেকটি Struct ব্যবহার করে জটিল ডেটা মডেল তৈরি করা যায়।
+
+  ~~~
+  package main
+
+  import "fmt"
+
+  // Struct ডিফাইন করা
+  type Person struct {
+      Name string
+      Age  int
+  }
+
+  func main() {
+      // Struct এর একটি অবজেক্ট তৈরি
+      person1 := Person{Name: "Alice", Age: 25}
+      fmt.Println("Person:", person1)
+      fmt.Println("Name:", person1.Name)
+      fmt.Println("Age:", person1.Age)
+  }
+  ~~~
+
+   - __Nested Struct__
+
+   ~~~
+   package main
+
+   import "fmt"
+
+   type Address struct {
+       City    string
+       ZipCode int
+   }
+
+   type Person struct {
+       Name    string
+       Age     int
+       Address Address
+   }
+
+   func main() {
+       person := Person{
+           Name: "David",
+           Age:  35,
+           Address: Address{
+               City:    "New York",
+               ZipCode: 10001,
+           },
+       }
+
+       fmt.Println("Person:", person)
+       fmt.Println("City:", person.Address.City)
+   }
+   ~~~
 
 
+
+
+
+
+
+     
 
 
 
