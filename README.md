@@ -1067,7 +1067,52 @@ __fmt এর প্রধান ফাংশনগুলো__
 	*value = *value + 20
   }
   ~~~
+
+## গোল্যাং-এ string 
+   গোল্যাং-এ string হল একটি ইমিউটেবল সিকোয়েন্স যা ইউনিকোড ক্যারেক্টার সংরক্ষণ করে। এটি টেক্সট ম্যানিপুলেশনের জন্য ব্যবহার করা হয়। স্ট্রিং ব্যবহার করার জন্য গোল্যাং অনেক বিল্ট-ইন ফাংশন এবং প্যাকেজ সরবরাহ করে, যেমন strings এবং strconv।
    
+   - ইমিউটেবল স্ট্রিং: একবার স্ট্রিং তৈরি হলে তা পরিবর্তন করা যায় না।
+   - ইন্টারনাল বাইটস: স্ট্রিংয়ের দৈর্ঘ্য বাইটের ওপর ভিত্তি করে নির্ধারিত হয়, না যে ক্যারেক্টারের সংখ্যা।
+   - বিল্ট-ইন লাইব্রেরি: স্ট্রিং ম্যানিপুলেশনের জন্য strings এবং strconv খুবই উপযোগী।
+     
+  ~~~
+  package main
+
+  import (
+	"fmt"
+	"strings"
+  )
+
+  func main() {
+
+	//শূন্য স্ট্রিং
+	var emptyString string
+	fmt.Println("Empty String:", emptyString)
+
+	//ক্যারেক্টার অ্যাক্সেস
+	str := "Hello"
+	fmt.Println("First Character:", string(str[0]))
+	fmt.Println("Second Character:", string(str[1]))
+
+	//স্ট্রিং স্লিট
+	name := "nahid nafiz"
+	namelist := strings.Split(name, " ")
+	fmt.Println(namelist[0])
+	fmt.Println(namelist)
+
+	//start end space remove
+	data := "   nahid hossen  "
+	trimmed := strings.TrimSpace(data)
+	fmt.Println(trimmed)
+
+	//string join
+	st1 := "nahid"
+	st2 := "hossen"
+	st3 := "abdullah"
+	sjoin := strings.Join([]string{"MD", st1, st2, st3}, " ")
+	fmt.Println(sjoin)
+  }
+  ~~~
 
 
 
